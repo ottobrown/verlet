@@ -18,7 +18,7 @@ struct VerletObject {
 /// With no velocity or acceleration and unfixed
 struct VerletObject new_obj(float x, float y, float r);
 
-void verlet_update(struct VerletObject* obj, float dt);
+void verlet_update(struct VerletObject* obj, float friction, float dt);
 
 void accelerate(struct VerletObject *obj, Vector2 acc);
 

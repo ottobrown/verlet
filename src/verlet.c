@@ -13,14 +13,16 @@ struct VerletObject new_obj(float x, float y, float r) {
     return new;
 }
 
-void verlet_update(struct VerletObject* obj, float dt) {
+void verlet_update(struct VerletObject* obj, float friction, float dt) {
     if (obj->fixed)
         return;
+
+    float time_friction = friction * dt;
     // Verlet integration
     // x_{n+1} = 2x_n - x_{n-1} + A{\DELTA t}^2
     Vector2 new_pos = v2add(
         v2scl(obj->accel, dt*dt),
-        v2sub(v2scl(obj->current_pos, 2), obj->last_pos)
+        v2sub(v2scl(obj->current_pos, 2.0 - time_friction), v2scl(obj->last_pos, 1.0 - time_friction))
     );
 
     obj->last_pos = obj->current_pos;

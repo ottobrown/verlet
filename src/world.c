@@ -16,6 +16,7 @@ struct World init_world() {
         .links = calloc(5, sizeof(struct Link)),
 
         .gravity = { 0.0, 1000.0 },
+        .friction = 0.2,
 
         .constraint_center = { 600.0, 600.0 },
         .constraint_radius = 500.0,
@@ -73,7 +74,7 @@ void substep(struct World* world, float dt) {
         }
 
         // update the position of each object
-        verlet_update(obj_ptr, dt);
+        verlet_update(obj_ptr, world->friction, dt);
     }
 
     for( size_t i=0; i<world->n_links; i++ ) {

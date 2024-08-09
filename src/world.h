@@ -20,6 +20,8 @@ struct World {
 
     /// Acceleration vector of gravitiational force
     Vector2 gravity;
+    /// Higher = more friction
+    float friction;
 
     /// Center of containing circle
     Vector2 constraint_center;
