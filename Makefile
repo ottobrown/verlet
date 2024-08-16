@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Iinclude
 
-SRCS = src/main.c src/verlet.c src/world.c src/link.c
+SRCS = src/main.c src/verlet.c src/world.c src/link.c src/dynarray.c
 
 OBJS = $(SRCS:.c=.o)
 

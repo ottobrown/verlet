@@ -1,3 +1,4 @@
+#include "dynarray.h"
 #include "stdlib.h"
 #include "raylib.h"
 #include "verlet.h"
@@ -10,13 +11,9 @@ struct World {
     /// Number of substeps per frame
     size_t substeps;
 
-    size_t n_objects;
-    size_t n_objects_allocated;
-    struct VerletObject* objects;
+    DynArray(struct VerletObject) objects;
 
-    size_t n_links;
-    size_t n_links_allocated;
-    struct Link* links;
+    DynArray(struct Link) links;
 
     /// Acceleration vector of gravitiational force
     Vector2 gravity;

@@ -62,8 +62,8 @@ int main() {
         // draw constraint circle
         DrawCircle(world.constraint_center.x, world.constraint_center.y, world.constraint_radius, LIGHTGRAY);
         // draw links
-        for(size_t i=0; i<world.n_links; i++) {
-            struct Link l = world.links[i];
+        for(size_t i=0; i<da_len(world.links); i++) {
+            struct Link l = world.links.data[i];
             DrawLineEx(
                 l.object_1->current_pos,
                 l.object_2->current_pos,
@@ -72,8 +72,9 @@ int main() {
             );
         }
         // draw objects
-        for (size_t i=0; i<world.n_objects; i++) {
-            struct VerletObject obj = world.objects[i];
+        for (size_t i=0; i<da_len(world.objects); i++) {
+            // crashes when this access occurs for `i=0`
+            struct VerletObject obj = world.objects.data[i];
             DrawCircle(obj.current_pos.x, obj.current_pos.y, obj.radius, RED);
         }
 
